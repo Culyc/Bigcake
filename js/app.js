@@ -1,114 +1,6 @@
 (() => {
   "use strict";
-  function e(e) {
-    this.type = e;
-  }
-  (e.prototype.init = function () {
-    const e = this;
-    (this.оbjects = []),
-      (this.daClassname = "_dynamic_adapt_"),
-      (this.nodes = document.querySelectorAll("[data-da]"));
-    for (let e = 0; e < this.nodes.length; e++) {
-      const t = this.nodes[e],
-        n = t.dataset.da.trim().split(","),
-        i = {};
-      (i.element = t),
-        (i.parent = t.parentNode),
-        (i.destination = document.querySelector(n[0].trim())),
-        (i.breakpoint = n[1] ? n[1].trim() : "767"),
-        (i.place = n[2] ? n[2].trim() : "last"),
-        (i.index = this.indexInParent(i.parent, i.element)),
-        this.оbjects.push(i);
-    }
-    this.arraySort(this.оbjects),
-      (this.mediaQueries = Array.prototype.map.call(
-        this.оbjects,
-        function (e) {
-          return (
-            "(" + this.type + "-width: " + e.breakpoint + "px)," + e.breakpoint
-          );
-        },
-        this
-      )),
-      (this.mediaQueries = Array.prototype.filter.call(
-        this.mediaQueries,
-        function (e, t, n) {
-          return Array.prototype.indexOf.call(n, e) === t;
-        }
-      ));
-    for (let t = 0; t < this.mediaQueries.length; t++) {
-      const n = this.mediaQueries[t],
-        i = String.prototype.split.call(n, ","),
-        o = window.matchMedia(i[0]),
-        a = i[1],
-        r = Array.prototype.filter.call(this.оbjects, function (e) {
-          return e.breakpoint === a;
-        });
-      o.addListener(function () {
-        e.mediaHandler(o, r);
-      }),
-        this.mediaHandler(o, r);
-    }
-  }),
-    (e.prototype.mediaHandler = function (e, t) {
-      if (e.matches)
-        for (let e = 0; e < t.length; e++) {
-          const n = t[e];
-          (n.index = this.indexInParent(n.parent, n.element)),
-            this.moveTo(n.place, n.element, n.destination);
-        }
-      else
-        for (let e = t.length - 1; e >= 0; e--) {
-          const n = t[e];
-          n.element.classList.contains(this.daClassname) &&
-            this.moveBack(n.parent, n.element, n.index);
-        }
-    }),
-    (e.prototype.moveTo = function (e, t, n) {
-      t.classList.add(this.daClassname),
-        "last" === e || e >= n.children.length
-          ? n.insertAdjacentElement("beforeend", t)
-          : "first" !== e
-          ? n.children[e].insertAdjacentElement("beforebegin", t)
-          : n.insertAdjacentElement("afterbegin", t);
-    }),
-    (e.prototype.moveBack = function (e, t, n) {
-      t.classList.remove(this.daClassname),
-        void 0 !== e.children[n]
-          ? e.children[n].insertAdjacentElement("beforebegin", t)
-          : e.insertAdjacentElement("beforeend", t);
-    }),
-    (e.prototype.indexInParent = function (e, t) {
-      const n = Array.prototype.slice.call(e.children);
-      return Array.prototype.indexOf.call(n, t);
-    }),
-    (e.prototype.arraySort = function (e) {
-      "min" === this.type
-        ? Array.prototype.sort.call(e, function (e, t) {
-            return e.breakpoint === t.breakpoint
-              ? e.place === t.place
-                ? 0
-                : "first" === e.place || "last" === t.place
-                ? -1
-                : "last" === e.place || "first" === t.place
-                ? 1
-                : e.place - t.place
-              : e.breakpoint - t.breakpoint;
-          })
-        : Array.prototype.sort.call(e, function (e, t) {
-            return e.breakpoint === t.breakpoint
-              ? e.place === t.place
-                ? 0
-                : "first" === e.place || "last" === t.place
-                ? 1
-                : "last" === e.place || "first" === t.place
-                ? -1
-                : t.place - e.place
-              : t.breakpoint - e.breakpoint;
-          });
-    });
-  new e("max").init();
-  class t {
+  class e {
     constructor(e, t = null) {
       if (
         ((this.config = Object.assign({ init: !0, logging: !0 }, e)),
@@ -124,36 +16,36 @@
     paralaxMouseInit(e) {
       e.forEach((e) => {
         const t = e.closest("[data-prlx-mouse-wrapper]"),
-          n = e.dataset.prlxCx ? +e.dataset.prlxCx : 100,
-          i = e.dataset.prlxCy ? +e.dataset.prlxCy : 100,
-          o = e.hasAttribute("data-prlx-dxr") ? -1 : 1,
-          a = e.hasAttribute("data-prlx-dyr") ? -1 : 1,
+          o = e.dataset.prlxCx ? +e.dataset.prlxCx : 100,
+          n = e.dataset.prlxCy ? +e.dataset.prlxCy : 100,
+          l = e.hasAttribute("data-prlx-dxr") ? -1 : 1,
+          i = e.hasAttribute("data-prlx-dyr") ? -1 : 1,
           r = e.dataset.prlxA ? +e.dataset.prlxA : 50;
-        let l = 0,
+        let c = 0,
           s = 0,
-          c = 0,
+          a = 0,
           d = 0;
-        function p(t = window) {
+        function u(t = window) {
           t.addEventListener("mousemove", function (t) {
-            const n = e.getBoundingClientRect().top + window.scrollY;
-            if (n >= window.scrollY || n + e.offsetHeight >= window.scrollY) {
+            const o = e.getBoundingClientRect().top + window.scrollY;
+            if (o >= window.scrollY || o + e.offsetHeight >= window.scrollY) {
               const e = window.innerWidth,
-                n = window.innerHeight,
-                i = t.clientX - e / 2,
-                o = t.clientY - n / 2;
-              (c = (i / e) * 100), (d = (o / n) * 100);
+                o = window.innerHeight,
+                n = t.clientX - e / 2,
+                l = t.clientY - o / 2;
+              (a = (n / e) * 100), (d = (l / o) * 100);
             }
           });
         }
         !(function t() {
-          (l += ((c - l) * r) / 1e3),
+          (c += ((a - c) * r) / 1e3),
             (s += ((d - s) * r) / 1e3),
-            (e.style.cssText = `transform: translate3D(${(o * l) / (n / 10)}%,${
-              (a * s) / (i / 10)
+            (e.style.cssText = `transform: translate3D(${(l * c) / (o / 10)}%,${
+              (i * s) / (n / 10)
             }%,0);`),
             requestAnimationFrame(t);
         })(),
-          t ? p(t) : p();
+          t ? u(t) : u();
       });
     }
     setLogging(e) {
@@ -165,54 +57,83 @@
         })(`[PRLX Mouse]: ${e}`);
     }
   }
-  let n = !0,
-    i = (e = 500) => {
-      let t = document.querySelector("body");
-      if (n) {
-        let i = document.querySelectorAll("[data-lp]");
+  let t = !0,
+    o = (e = 500) => {
+      let o = document.querySelector("body");
+      if (t) {
+        let n = document.querySelectorAll("[data-lp]");
         setTimeout(() => {
-          for (let e = 0; e < i.length; e++) {
-            i[e].style.paddingRight = "0px";
+          for (let e = 0; e < n.length; e++) {
+            n[e].style.paddingRight = "0px";
           }
-          (t.style.paddingRight = "0px"),
+          (o.style.paddingRight = "0px"),
             document.documentElement.classList.remove("lock");
         }, e),
-          (n = !1),
+          (t = !1),
           setTimeout(function () {
-            n = !0;
+            t = !0;
           }, e);
       }
     },
-    o = (e = 500) => {
-      let t = document.querySelector("body");
-      if (n) {
-        let i = document.querySelectorAll("[data-lp]");
-        for (let e = 0; e < i.length; e++) {
-          i[e].style.paddingRight =
+    n = (e = 500) => {
+      let o = document.querySelector("body");
+      if (t) {
+        let n = document.querySelectorAll("[data-lp]");
+        for (let e = 0; e < n.length; e++) {
+          n[e].style.paddingRight =
             window.innerWidth -
             document.querySelector(".wrapper").offsetWidth +
             "px";
         }
-        (t.style.paddingRight =
+        (o.style.paddingRight =
           window.innerWidth -
           document.querySelector(".wrapper").offsetWidth +
           "px"),
           document.documentElement.classList.add("lock"),
-          (n = !1),
+          (t = !1),
           setTimeout(function () {
-            n = !0;
+            t = !0;
           }, e);
       }
     };
-  let a = !1;
+  let l = !1;
   setTimeout(() => {
-    if (a) {
+    if (l) {
       let e = new Event("windowScroll");
       window.addEventListener("scroll", function (t) {
         document.dispatchEvent(e);
       });
     }
   }, 0),
+    window.addEventListener("load", function (e) {
+      let t = [54.941642080831926, 73.4172151242675];
+      ymaps.ready(function () {
+        let e = new ymaps.Map("map", { center: t, zoom: 16 }),
+          o = new ymaps.Placemark(
+            [54.94269515337896, 73.42354513754266],
+            {
+              balloonContentHeader: "",
+              balloonContentBody: "г.Омск, ул.Титова, д.35",
+              balloonContentFooter: "+ 7(978) 507-54 - 90",
+            },
+            {
+              iconLayout: "default#imageWithContent",
+              iconImageHref: "img/icons/marker.svg",
+              iconImageSize: [117, 135],
+              iconImageOffset: [-60, -140],
+            }
+          );
+        e.controls.remove("geolocationControl"),
+          e.controls.remove("searchControl"),
+          e.controls.remove("trafficControl"),
+          e.controls.remove("typeSelector"),
+          e.controls.remove("fullscreenControl"),
+          e.controls.remove("zoomControl"),
+          e.controls.remove("rulerControl"),
+          e.behaviors.disable(["scrollZoom"]),
+          e.geoObjects.add(o);
+      });
+    }),
     (window.FLS = !0),
     (function (e) {
       let t = new Image();
@@ -230,12 +151,12 @@
       let e = document.querySelector(".icon-menu");
       e &&
         e.addEventListener("click", function (e) {
-          n &&
+          t &&
             (((e = 500) => {
-              document.documentElement.classList.contains("lock") ? i(e) : o(e);
+              document.documentElement.classList.contains("lock") ? o(e) : n(e);
             })(),
             document.documentElement.classList.toggle("menu-open"));
         });
     })(),
-    new t({});
+    new e({});
 })();
