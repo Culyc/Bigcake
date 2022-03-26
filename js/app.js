@@ -18,34 +18,34 @@
         const t = e.closest("[data-prlx-mouse-wrapper]"),
           o = e.dataset.prlxCx ? +e.dataset.prlxCx : 100,
           n = e.dataset.prlxCy ? +e.dataset.prlxCy : 100,
-          l = e.hasAttribute("data-prlx-dxr") ? -1 : 1,
-          i = e.hasAttribute("data-prlx-dyr") ? -1 : 1,
-          r = e.dataset.prlxA ? +e.dataset.prlxA : 50;
+          i = e.hasAttribute("data-prlx-dxr") ? -1 : 1,
+          l = e.hasAttribute("data-prlx-dyr") ? -1 : 1,
+          s = e.dataset.prlxA ? +e.dataset.prlxA : 50;
         let c = 0,
-          s = 0,
+          r = 0,
           a = 0,
           d = 0;
-        function u(t = window) {
+        function m(t = window) {
           t.addEventListener("mousemove", function (t) {
             const o = e.getBoundingClientRect().top + window.scrollY;
             if (o >= window.scrollY || o + e.offsetHeight >= window.scrollY) {
               const e = window.innerWidth,
                 o = window.innerHeight,
                 n = t.clientX - e / 2,
-                l = t.clientY - o / 2;
-              (a = (n / e) * 100), (d = (l / o) * 100);
+                i = t.clientY - o / 2;
+              (a = (n / e) * 100), (d = (i / o) * 100);
             }
           });
         }
         !(function t() {
-          (c += ((a - c) * r) / 1e3),
-            (s += ((d - s) * r) / 1e3),
-            (e.style.cssText = `transform: translate3D(${(l * c) / (o / 10)}%,${
-              (i * s) / (n / 10)
+          (c += ((a - c) * s) / 1e3),
+            (r += ((d - r) * s) / 1e3),
+            (e.style.cssText = `transform: translate3D(${(i * c) / (o / 10)}%,${
+              (l * r) / (n / 10)
             }%,0);`),
             requestAnimationFrame(t);
         })(),
-          t ? u(t) : u();
+          t ? m(t) : m();
       });
     }
     setLogging(e) {
@@ -96,9 +96,9 @@
           }, e);
       }
     };
-  let l = !1;
+  let i = !1;
   setTimeout(() => {
-    if (l) {
+    if (i) {
       let e = new Event("windowScroll");
       window.addEventListener("scroll", function (t) {
         document.dispatchEvent(e);
@@ -133,6 +133,34 @@
           e.behaviors.disable(["scrollZoom"]),
           e.geoObjects.add(o);
       });
+      const o = document.querySelectorAll("._anim-items");
+      if (o.length > 0) {
+        function n() {
+          for (let e = 0; e < o.length; e++) {
+            const t = o[e],
+              n = t.offsetHeight,
+              l = i(t).top,
+              s = 4;
+            let c = window.innerHeight - n / s;
+            n > window.innerHeight &&
+              (c = window.innerHeight - window.innerHeight / s),
+              pageYOffset > l - c && pageYOffset < l + n
+                ? t.classList.add("_active")
+                : t.classList.contains("_anim-no-hide") ||
+                  t.classList.remove("_active");
+          }
+        }
+        function i(e) {
+          const t = e.getBoundingClientRect(),
+            o = window.pageXOffset || document.documentElement.scrollLeft,
+            n = window.pageYOffset || document.documentElement.scrollTop;
+          return { top: t.top + n, left: t.left + o };
+        }
+        window.addEventListener("scroll", n),
+          setTimeout(() => {
+            n();
+          }, 300);
+      }
     }),
     (window.FLS = !0),
     (function (e) {

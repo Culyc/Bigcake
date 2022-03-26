@@ -489,6 +489,7 @@ body {
 }
 
 [class*=__btn] {
+  transition: all 0.3s ease 0s;
   color: #fff;
   border-radius: 10px;
   padding: 17px 49px 17px 49px;
@@ -534,6 +535,14 @@ body {
   width: 90px;
   height: 90px;
   margin-bottom: 20px;
+  transform: scale(0);
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 0.7s;
+  transition-delay: 0s;
+}
+.block-icons__image._active {
+  transform: scale(1);
 }
 .block-icons__image::before {
   color: #db3559;
@@ -553,6 +562,24 @@ body {
   .block-icons__image::before {
     font-size: 3.125rem;
   }
+}
+.block-icons ._icon-scissors {
+  transition-delay: 1s;
+}
+.block-icons ._icon-home {
+  transition-delay: 2s;
+}
+.block-icons ._icon-girl {
+  transition-delay: 3s;
+}
+.block-icons ._icon-caketwo {
+  transition-delay: 1s;
+}
+.block-icons ._icon-package {
+  transition-delay: 1.5s;
+}
+.block-icons ._icon-motorcycle {
+  transition-delay: 2s;
 }
 .block-icons__description {
   font-family: Nunito;
@@ -614,6 +641,7 @@ body {
 }
 
 .time__chery {
+  transition: all 0.9s ease 0s;
   position: absolute;
 }
 .time__chery img {
@@ -622,7 +650,7 @@ body {
 }
 .time__chery_1 {
   top: 10%;
-  right: 10%;
+  right: 4%;
   height: 17%;
   width: 17%;
 }
@@ -1402,13 +1430,15 @@ body {
   flex: 1 1 auto;
 }
 .time__btn {
+  transition: all 0.7s ease 0s;
   color: #fff;
   border-radius: 10px;
   padding: 17px 49px 17px 49px;
+  border: 1px solid transparent;
   background: linear-gradient(0.19deg, #802034 -30.53%, #da3e60 29.32%, #fa7491 87.2%);
-  transition: all 0.3s ease 0s;
 }
 .time__btn:hover {
+  transition: all 0.3s ease 0s;
   color: #802034;
   background: #fff;
   border: 1px solid #802034;
@@ -1454,63 +1484,6 @@ body {
   max-width: 100%;
   object-fit: cover;
 }
-.time__chery_1 {
-  top: 10%;
-  right: 10%;
-  height: 17%;
-  width: 17%;
-}
-@media (max-width: 47.99875em) {
-  .time__chery_1 {
-    top: 10%;
-    right: -5%;
-    height: 25%;
-    width: 25%;
-  }
-}
-.time__chery_2 {
-  right: 4%;
-  bottom: 0%;
-  height: 33%;
-  width: 33%;
-}
-@media (max-width: 47.99875em) {
-  .time__chery_2 {
-    right: -17%;
-    bottom: -12%;
-    height: 49%;
-    width: 48%;
-  }
-}
-.time__chery_3 {
-  bottom: 6%;
-  left: 10%;
-  height: 17%;
-  width: 17%;
-}
-@media (max-width: 47.99875em) {
-  .time__chery_3 {
-    bottom: 6%;
-    left: -3%;
-    height: 25%;
-    width: 25%;
-  }
-}
-.time__chery_4 {
-  left: 1%;
-  top: 24%;
-  width: 35%;
-  height: 35%;
-}
-@media (max-width: 47.99875em) {
-  .time__chery_4 {
-    left: -25%;
-    top: -6%;
-    width: 53%;
-    height: 53%;
-  }
-}
-
 .block-icons__item_time {
   flex: 0 1 16.66%;
 }
@@ -1525,6 +1498,15 @@ body {
     flex: 1 1 100%;
     max-width: 100%;
   }
+}
+
+.item-practice__image_1._active {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.6s ease 0.3s;
+  -o-transition: all 0.6s ease 0.3s;
+  transition: all 0.6s ease 0.3s;
 }
 
 @media (min-width: 76.875em) {
@@ -1675,11 +1657,31 @@ body {
 .than__image-ibg {
   flex: 1 1 auto;
   padding-bottom: 100%;
+  transition: all 0.3s ease 0s;
+  animation-name: image-rotate;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
 }
 .than__image-ibg img {
   max-width: 100%;
 }
+.than__image-ibg:hover {
+  transition: all 0.3s ease 0s;
+  animation-play-state: paused;
+}
 
+@keyframes image-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .block-berries__row {
   display: flex;
   gap: 80px;
@@ -1702,6 +1704,9 @@ body {
     flex: 0 1 100%;
   }
 }
+.block-berries__title {
+  max-width: 23.125rem;
+}
 @media (max-width: 47.99875em) {
   .block-berries__title {
     text-align: center;
@@ -1715,7 +1720,7 @@ body {
   right: 20px;
 }
 .block-berries__text {
-  flex: 1 1 auto;
+  max-width: 23.125rem;
 }
 .block-berries__text p {
   margin-bottom: 20px;
@@ -1724,6 +1729,7 @@ body {
   flex: 0 0 50%;
   position: relative;
   z-index: 1;
+  min-height: 355px;
   display: flex;
   align-items: center;
   justify-content: center;
