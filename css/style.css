@@ -495,6 +495,16 @@ body {
   padding: 17px 49px 17px 49px;
   background: linear-gradient(0.19deg, #802034 -30.53%, #da3e60 29.32%, #fa7491 87.2%);
 }
+[class*=__btn]:focus {
+  outline: 2px solid #db3559;
+  outline-offset: 2px;
+}
+[class*=__btn]:hover {
+  background-color: #320000;
+}
+[class*=__btn]:active {
+  color: #770000;
+}
 
 .btn-pink {
   border: 1px solid #320000;
@@ -838,6 +848,11 @@ body {
 .header__logo {
   flex: 0 1 80px;
   position: relative;
+  transition: color 0.3s ease 0s;
+}
+.header__logo:focus {
+  outline: 2px solid #320000;
+  outline-offset: 2px;
 }
 .header__image_2 {
   position: absolute;
@@ -900,9 +915,15 @@ body {
 .menu__link {
   transition: all 0.3s ease 0s;
 }
+.menu__link:focus {
+  outline: 2px solid #db3559;
+  outline-offset: 2px;
+}
 .menu__link:hover {
-  color: red;
-  text-decoration: underline;
+  color: #db3559;
+}
+.menu__link:active {
+  color: #770000;
 }
 
 .icon-menu {
@@ -948,6 +969,17 @@ body {
     transform: rotate(45deg);
     bottom: calc(50% - 1px);
   }
+}
+
+.__link:focus {
+  outline: 2px solid #320000;
+  outline-offset: 2px;
+}
+.__link:hover {
+  color: #320000;
+}
+.__link:active {
+  color: #320000;
 }
 
 @media (min-width: 76.875em) {
@@ -2004,6 +2036,9 @@ body {
   flex: 0 1 100%;
   width: 100%;
 }
+.block-berries__button .block-berries__btn:hover {
+  background-color: #320000;
+}
 .block-berries__column {
   flex: 0 1 50%;
   display: flex;
@@ -2122,7 +2157,6 @@ body {
 
 .our__container {
   display: flex;
-  justify-content: space-between;
   column-gap: 1.25rem;
 }
 @media (max-width: 61.99875em) {
@@ -2139,6 +2173,7 @@ body {
   .our__body {
     max-width: 100%;
     align-items: center;
+    margin-bottom: 20px;
   }
 }
 .our__title {
@@ -2147,6 +2182,11 @@ body {
 .our__controll {
   display: flex;
   column-gap: 6.25rem;
+}
+@media (max-width: 61.99875em) {
+  .our__controll {
+    display: none;
+  }
 }
 .our__prev, .our__next {
   width: 55px;
@@ -2171,14 +2211,21 @@ body {
   transform: rotate(-180deg);
 }
 
+.our-resume {
+  width: 100%;
+}
+.our-resume__slider {
+  width: 100%;
+  overflow: hidden;
+}
 @media (min-width: 76.875em) {
   .our-resume__slider {
-    margin-bottom: 3.125rem;
+    margin-bottom: 1.875rem;
   }
 }
 @media (min-width: 20em) and (max-width: 76.875em) {
   .our-resume__slider {
-    margin-bottom: clamp( 1.25rem , 0.5906593407rem  +  3.2967032967vw , 3.125rem );
+    margin-bottom: clamp( 1.25rem , 1.0302197802rem  +  1.0989010989vw , 1.875rem );
   }
 }
 @media (max-width: 20em) {
@@ -2192,7 +2239,6 @@ body {
 .our-resume__slide {
   opacity: 0 !important;
   width: 370px;
-  max-height: 330px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -2201,25 +2247,27 @@ body {
   opacity: 1 !important;
 }
 @media (max-width: 61.99875em) {
-  .our-resume__slide.swiper-slide-active {
-    max-height: auto;
+  .our-resume__slide {
+    width: auto;
+    min-height: 320px;
+    max-height: none;
     justify-content: center;
     align-items: center;
-    height: auto;
   }
 }
 .our-resume__name {
-  margin-bottom: 1.875rem;
+  margin-bottom: 1.25rem;
 }
 .our-resume__text {
   flex: 1 1 auto;
   overflow: hidden;
+  max-width: 95%;
 }
 .our-resume__text p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.9375rem;
 }
 .our-resume__text:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 @media (max-width: 61.99875em) {
   .our-resume__text {
@@ -2227,7 +2275,6 @@ body {
   }
 }
 .our-resume__button {
-  margin-bottom: 1.875rem;
   background-color: #ffd6dd;
   border: 1px solid #db3559;
   color: #320000;
@@ -2239,11 +2286,13 @@ body {
 @media (max-width: 61.99875em) {
   .our-resume__button {
     align-self: center;
+    margin-bottom: 15px;
   }
 }
 
 .our-image__slider {
   flex: 0 1 44.1%;
+  height: 100%;
 }
 @media (max-width: 61.99875em) {
   .our-image__slider {
@@ -2255,11 +2304,11 @@ body {
 }
 .our-image__swiper {
   margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
 }
 .our-image__slide {
-  width: 427px;
-  display: flex;
-  justify-content: center;
+  width: 516px;
   position: relative;
   background-color: #ffefed;
 }
@@ -2267,17 +2316,51 @@ body {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 54%;
   transform: translate(-50%, 0px);
   box-shadow: 0 4px 20px rgba(241, 147, 147, 0.18);
   border-radius: 30px 280px 30px 30px;
-  width: 80%;
-  height: 95%;
+  width: 45%;
+  height: 85%;
   background-color: #fff;
+  z-index: 1;
 }
-.slide__image-ibg {
-  padding-bottom: 100%;
+.our-image__pagination {
+  display: none;
+  justify-content: center;
+  column-gap: 1.875rem;
+}
+@media (max-width: 61.99875em) {
+  .our-image__pagination {
+    display: flex;
+  }
+}
+.our-image__pagination .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  background-color: #ffd6dd;
+  border-radius: 50%;
+  border: 1px solid #db3559;
+}
+.our-image__pagination .swiper-pagination-bullet-active {
+  width: 15px;
+  height: 15px;
+  background-color: #db3559;
+  border-radius: 50%;
+  border: 1px solid #db3559;
+}
+
+.slide__image {
+  height: 510px;
   width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.slide__image img {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .our-vertical__slider {
@@ -2288,18 +2371,42 @@ body {
     display: none;
   }
 }
-.our-vertical__slide {
-  flex: 1 1 238px;
-  height: 237.5px;
-  margin-bottom: 1.875rem;
+.our-vertical__swiper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  row-gap: 20px;
+  justify-content: start;
 }
-.our-vertical__image-ibg {
-  flex: 1 1 auto;
-  width: 90%;
+.our-vertical__slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.875rem;
+}
+.our-vertical__image {
+  height: 235px;
+  width: 191px;
+  position: relative;
+}
+.our-vertical__image img {
+  max-width: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+.our-vertical__image::before {
+  content: "";
+  position: absolute;
+  bottom: 19px;
+  left: 54%;
+  transform: translate(-50%, 0px);
+  box-shadow: 0 4px 20px rgba(241, 147, 147, 0.18);
+  border-radius: 30px 280px 30px 30px;
+  width: 45%;
+  height: 85%;
+  background-color: #fff;
+  z-index: 1;
 }
 .waiting__container {
   position: relative;
